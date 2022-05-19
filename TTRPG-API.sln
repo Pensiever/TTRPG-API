@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TtrpgApi", "TtrpgApi\TtrpgA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADOToolBox", "..\..\Angular\MovieCatalogueApi\MovieCatalogueApi\ADOToolBox\ADOToolBox.csproj", "{A2D6B1D2-721C-4A3C-9269-A81DBB9489DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{007F9FD1-071E-4A8F-8695-0662FDBD38DE}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TtrpgDB", "TtrpgDB\TtrpgDB.sqlproj", "{0678A023-9807-4912-980D-2CB49DB0EFA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,16 @@ Global
 		{A2D6B1D2-721C-4A3C-9269-A81DBB9489DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2D6B1D2-721C-4A3C-9269-A81DBB9489DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2D6B1D2-721C-4A3C-9269-A81DBB9489DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{007F9FD1-071E-4A8F-8695-0662FDBD38DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007F9FD1-071E-4A8F-8695-0662FDBD38DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007F9FD1-071E-4A8F-8695-0662FDBD38DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007F9FD1-071E-4A8F-8695-0662FDBD38DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0678A023-9807-4912-980D-2CB49DB0EFA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0678A023-9807-4912-980D-2CB49DB0EFA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0678A023-9807-4912-980D-2CB49DB0EFA7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0678A023-9807-4912-980D-2CB49DB0EFA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0678A023-9807-4912-980D-2CB49DB0EFA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0678A023-9807-4912-980D-2CB49DB0EFA7}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
