@@ -9,8 +9,7 @@
     <ProjectGuid>{0678a023-9807-4912-980d-2cb49db0efa7}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
-    <RootPath>
-    </RootPath>
+    <RootPath />
     <RootNamespace>TtrpgDB</RootNamespace>
     <AssemblyName>TtrpgDB</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
@@ -48,7 +47,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
-    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
   </PropertyGroup>
@@ -56,5 +54,32 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="Scripts" />
+    <Folder Include="Functions" />
+    <Folder Include="Views" />
+    <Folder Include="Triggers" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Questers.sql" />
+    <Build Include="Tables\Backgrounds.sql" />
+    <Build Include="Tables\Contacts.sql" />
+    <Build Include="Tables\Genres.sql" />
+    <Build Include="Tables\Games.sql" />
+    <Build Include="Tables\FavoriteGenres.sql" />
+    <Build Include="Tables\FavoriteGames.sql" />
+    <Build Include="Tables\Contributions.sql" />
+    <Build Include="Tables\Transgressions.sql" />
+    <Build Include="Triggers\SoftDelete.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="TtrpgDB.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TtrpgDB.publish.xml" />
   </ItemGroup>
 </Project>

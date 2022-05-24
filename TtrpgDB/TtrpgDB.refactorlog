@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="4300f011-2a04-4dd8-95a1-ddaa492bbf24" ChangeDateTime="05/19/2022 12:28:25">
+    <Property Name="ElementName" Value="[dbo].[Questers].[Id_Background]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Questers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BackgroundId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="57c76ecc-08b4-4bf6-9498-fd8f76674707" ChangeDateTime="05/19/2022 12:32:29">
+    <Property Name="ElementName" Value="[dbo].[Backgrounds].[NavBarSide]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Backgrounds]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NavbarSide" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="948d8312-6595-42b3-899e-4aa3d1ef4118" ChangeDateTime="05/19/2022 12:32:34">
+    <Property Name="ElementName" Value="[dbo].[Backgrounds].[NavbarTopFont]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Backgrounds]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NavTopFont" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="425c0944-9921-4ace-bc48-d35b54305e89" ChangeDateTime="05/19/2022 12:32:36">
+    <Property Name="ElementName" Value="[dbo].[Backgrounds].[NavbarTop]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Backgrounds]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NavTop" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bc88bb8a-240c-4c08-9cd9-a951b1f1817c" ChangeDateTime="05/19/2022 12:32:39">
+    <Property Name="ElementName" Value="[dbo].[Backgrounds].[NavbarSide]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Backgrounds]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NavSide" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e96d2d8f-18bd-41fb-aa74-6cb08805d3d9" ChangeDateTime="05/19/2022 12:32:41">
+    <Property Name="ElementName" Value="[dbo].[Backgrounds].[NavbarSideFont]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Backgrounds]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NavSideFont" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b158d9a8-4f7f-481c-9bda-7151dcc0d0a6" ChangeDateTime="05/19/2022 12:33:09">
+    <Property Name="ElementName" Value="[dbo].[Backgrounds].[NavSideButon]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Backgrounds]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NavSideButton" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="87c521cd-3aef-42b8-b886-8edcf4584881" ChangeDateTime="05/19/2022 12:59:43">
+    <Property Name="ElementName" Value="[dbo].[Contributions].[Message]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Contributions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="74e1b227-caf9-434c-8f0f-ee7f1e55b79d" ChangeDateTime="05/19/2022 13:04:25">
+    <Property Name="ElementName" Value="[dbo].[Chats].[QuesterId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Chats]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="QuesterUsername" />
+  </Operation>
+</Operations>
