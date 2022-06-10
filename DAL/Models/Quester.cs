@@ -21,6 +21,6 @@ namespace DAL.Models
         public string Bio { get; set; }
         public bool OnlinePlay { get; set; }
         public bool OfflinePlay { get; set; }
-        public int PostalCode { get; set; }
+        public int? PostalCode { get; set; }
     }
 }

@@ -50,9 +50,9 @@ namespace Model_BLL.Services
             _repo.Delete(Id);
         }
 
-        public void Update(Quester u)
+        public void Update(Quester q)
         {
-            _repo.Update(u.toDal());
+            _repo.Update(q.toDal());
         }
 
         public void SwitchAdmin(int Id)

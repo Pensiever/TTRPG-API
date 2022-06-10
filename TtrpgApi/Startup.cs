@@ -42,7 +42,7 @@ namespace TtrpgApi
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             #region Swagger
-            services.AddEndpointsApiExplorer();
+
             services.AddSwaggerGen(c =>
             {
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "swagger.xml");
@@ -64,25 +64,29 @@ namespace TtrpgApi
             AppSettings appSettings = mySecret.Get<AppSettings>();
             byte[] key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
-                options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters()
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey =
-                        new SymmetricSecurityKey(key),
-                        ValidateIssuer = true,
-                        ValidIssuer = "http://localhost53377",
-                        ValidateLifetime = true,
-                        ValidateAudience = true,
-                    };
-                });
-
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("Quester", policy => policy.RequireRole("Quester", "Admin"));
+            });
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = true,
+                    ValidIssuer = "http://localhost:53377",
+                    ValidateAudience = false,
+                    ValidateLifetime = true
+                };
             });
 
             services.AddScoped<ITokenService, TokenService>();

@@ -20,12 +20,13 @@ namespace DAL.Repositories
 
         public bool? CheckQuester(Quester q)
         {
-            string Query = "SELECT Id FROM [Questers] WHERE Username = @username AND Password = @password";
+            string Query = "SELECT Id FROM Questers WHERE Username = @username AND Password = @password";
             Command cmd = new Command(Query);
             cmd.AddParameter("username", q.Username);
             cmd.AddParameter("password", q.Password);
 
             int Id;
+
             try
             {
                 Id = (int)_connection.ExecuteScalar(cmd);
@@ -55,7 +56,7 @@ namespace DAL.Repositories
         {
             Command cmd = new Command("SELECT * FROM [Questers] WHERE Username = @username");
             cmd.AddParameter("username", username);
-            return _connection.ExecuteReader(cmd, Converter.Convert).FirstOrDefault();
+            return _connection.ExecuteReader(cmd, Converter.ConvertQuester).FirstOrDefault();
         }
 
         public bool Delete(int Id)
@@ -68,14 +69,14 @@ namespace DAL.Repositories
         public IEnumerable<Quester> GetAll()
         {
             Command cmd = new Command("SELECT * FROM [Questers]");
-            return _connection.ExecuteReader<Quester>(cmd, Converter.Convert);
+            return _connection.ExecuteReader<Quester>(cmd, Converter.ConvertQuester);
         }
 
         public Quester GetById(int Id)
         {
             Command cmd = new Command("SELECT * FROM [Questers] WHERE Id = @Id");
             cmd.AddParameter("Id", Id);
-            return _connection.ExecuteReader(cmd, Converter.Convert).FirstOrDefault();
+            return _connection.ExecuteReader(cmd, Converter.ConvertQuester).FirstOrDefault();
         }
 
         public void Insert(Quester q)

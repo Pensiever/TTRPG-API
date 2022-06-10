@@ -10,7 +10,7 @@ namespace DAL.Tools
 {
     public static class Converter
     {
-        public static Quester Convert(SqlDataReader reader)
+        public static Quester ConvertQuester(SqlDataReader reader)
         {
             return new Quester
             {
@@ -27,7 +27,40 @@ namespace DAL.Tools
                 Bio = reader["Bio"].ToString(),
                 OnlinePlay = (bool)reader["OnlinePlay"],
                 OfflinePlay = (bool)reader["OfflinePlay"],
-                PostalCode = (int)reader["PostalCode"]
+                PostalCode = reader["PostalCode"] == DBNull.Value ? null : (int)reader["PostalCode"]
+            };
+        }
+
+        public static Game ConvertGame(SqlDataReader reader)
+        {
+            return new Game
+            {
+                Id = (int)reader["Id"],
+                Name = reader["Name"].ToString(),
+                Description = reader["Description"].ToString(),
+                Image = reader["Image"].ToString()
+            };
+        }
+
+        public static Genre ConvertGenre(SqlDataReader reader)
+        {
+            return new Genre
+            {
+                Id = (int)reader["Id"],
+                Name = reader["Name"].ToString(),
+                Description = reader["Description"].ToString(),
+                Image = reader["Image"].ToString()
+            };
+        }
+
+        public static Favorite ConvertFavorite(SqlDataReader reader)
+        {
+            return new Favorite
+            {
+                Id = (int)reader["Id"],
+                Name = reader["Name"].ToString(),
+                Description = reader["Description"].ToString(),
+                Image = reader["Image"].ToString()
             };
         }
     }

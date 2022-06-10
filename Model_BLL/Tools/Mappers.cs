@@ -32,6 +32,28 @@ namespace Model_BLL.Tools
             };
         }
 
+        public static model.Game toModel(this dal.Game g)
+        {
+            return new model.Game
+            {
+                Id = g.Id,
+                Name = g.Name,
+                Description = g.Description,
+                Image = g.Image
+            };
+        }
+
+        public static model.Genre toModel(this dal.Genre g)
+        {
+            return new model.Genre
+            {
+                Id = g.Id,
+                Name = g.Name,
+                Description = g.Description,
+                Image = g.Image
+            };
+        }
+
         public static dal.Quester toDal(this model.Quester q)
         {
             return new dal.Quester
@@ -50,6 +72,28 @@ namespace Model_BLL.Tools
                 OnlinePlay = q.OnlinePlay,
                 OfflinePlay = q.OfflinePlay,
                 PostalCode = q.PostalCode
+            };
+        }
+
+        public static dal.Game toDal(this model.Game g)
+        {
+            return new dal.Game
+            {
+                Id = g.Id,
+                Name = g.Name,
+                Description = g.Description,
+                Image = g.Image
+            };
+        }
+
+        public static dal.Genre toDal(this model.Genre g)
+        {
+            return new dal.Genre
+            {
+                Id = g.Id,
+                Name = g.Name,
+                Description = g.Description,
+                Image = g.Image
             };
         }
     }
