@@ -38,6 +38,7 @@ namespace TtrpgApi.Services
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, quester.Id.ToString()),
+                    new Claim(ClaimTypes.Surname, quester.Username),
                     new Claim(ClaimTypes.Role, quester.IsAdmin ? "Admin" : "Quester")
                 }),
                 Issuer = _appSettings.Issuer,

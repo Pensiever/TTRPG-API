@@ -15,10 +15,10 @@ namespace DAL.Repositories
 
         IConfiguration _config;
 
-        public SqlConnection Connection()
-        {
-            return new SqlConnection(_config.GetConnectionString("default"));
-        }
+        //public SqlConnection Connection()
+        //{
+        //    return new SqlConnection(_config.GetConnectionString("default"));
+        //}
 
         public BaseRepository(IConfiguration config)
         {

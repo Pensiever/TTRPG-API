@@ -5,6 +5,7 @@ using TtrpgApi.Models;
 using TtrpgApi.Tools;
 using Model_BLL.Models;
 using Model_BLL.Services.Interfaces;
+using System.Security.Claims;
 
 namespace TtrpgApi.Controllers
 {
@@ -20,14 +21,14 @@ namespace TtrpgApi.Controllers
             _favoritesService = favoritesService;
         }
 
-
         [Authorize("Quester")]
-        [HttpPost("addFavoriteGame")]
-        public IActionResult addFavoriteGame([FromBody] ConnectedQuester q, Game g)
+        [HttpPost("Id")]
+        public IActionResult addFavoriteGame(int Id)
         {
             try
             {
-                _favoritesService.addFavoriteGame(q.toModel(), g);
+                int questerId = int.Parse(User.FindFirstValue(ClaimTypes.Name));
+                _favoritesService.addFavoriteGame(questerId, Id);
                 return Ok("Ajouté aux préférences");
             }
             catch (Exception e)
@@ -37,12 +38,13 @@ namespace TtrpgApi.Controllers
         }
 
         [Authorize("Quester")]
-        [HttpGet("{Id}")]
-        public IActionResult Get(int Id)
+        [HttpGet]
+        public IActionResult Get()
         {
             try
             {
-                return Ok(_favoritesService.GetAllGames(Id));
+                int questerId = int.Parse(User.FindFirstValue(ClaimTypes.Name));
+                return Ok(_favoritesService.GetAllGames(questerId));
             }
             catch (Exception e)
             {
@@ -51,28 +53,12 @@ namespace TtrpgApi.Controllers
         }
 
         [Authorize("Quester")]
-        [HttpGet("{QuesterId}{GameId}")]
-        public IActionResult GetGame(int QuesterId, int GameId)
+        [HttpDelete("{FavoriteId}")]
+        public IActionResult deleteGame(int FavoriteId)
         {
             try
             {
-                return Ok(_favoritesService.GetGameById(QuesterId, GameId));
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
-        
-
-        [Authorize("Quester")]
-        [HttpDelete("{QuesterId}{GameId}")]
-        public IActionResult deleteGame(int QuesterId, int GameId)
-        {
-            try
-            {
-                _favoritesService.DeleteGame(QuesterId, GameId);
+                _favoritesService.DeleteGame(FavoriteId);
                 return Ok();
             }
             catch (Exception e)

@@ -9,8 +9,7 @@ namespace DAL.Models
     public class Favorite
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Image { get; set; }
+        public int QuesterId { get; set; }
+        public int GameGenreId { get; set; }
     }
 }

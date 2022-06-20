@@ -9,13 +9,11 @@ namespace DAL.Interfaces
 {
     public interface IFavoritesRepository<Favorite>
     {
-        IEnumerable<Favorite> GetAllGames(int Id);
-        IEnumerable<Favorite> GetAllGenres(int Id);
-        Favorite GetGameById(int QuesterId, int GameId);
-        Favorite GetGenreById(int QuesterId, int GenreId);
-        void InsertGame(Quester q, Game g);
-        void InsertGenre(Quester q, Genre g);
-        bool DeleteGame(int QuesterId, int GameId);
-        bool DeleteGenre(int QuesterId, int GenreId);
+        IEnumerable<Favorite> GetAllGames(int QuesterId);
+        IEnumerable<Favorite> GetAllGenres(int QuesterId);
+        void InsertGame(int QuesterId, int GameId);
+        void InsertGenre(int QuesterId, int GenreId);
+        bool DeleteGame(int FavoriteId);
+        bool DeleteGenre(int FavoriteId);
     }
 }

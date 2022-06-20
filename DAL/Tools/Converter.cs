@@ -53,14 +53,40 @@ namespace DAL.Tools
             };
         }
 
-        public static Favorite ConvertFavorite(SqlDataReader reader)
+        public static Favorite ConvertFavoriteGenre(SqlDataReader reader)
         {
             return new Favorite
             {
                 Id = (int)reader["Id"],
+                QuesterId = (int)reader["QuesterId"],
+                GameGenreId = (int)reader["GenreId"]
+            };
+        }
+
+        public static Favorite ConvertFavoriteGame(SqlDataReader reader)
+        {
+            return new Favorite
+            {
+                Id = (int)reader["Id"],
+                QuesterId = (int)reader["QuesterId"],
+                GameGenreId = (int)reader["GameId"]
+            };
+        }
+
+        public static Background ConvertBackground(SqlDataReader reader)
+        {
+            return new Background
+            {
+                Id = (int)reader["Id"],
                 Name = reader["Name"].ToString(),
-                Description = reader["Description"].ToString(),
-                Image = reader["Image"].ToString()
+                Image = reader["Image"].ToString(),
+                NavTop = reader["NavTop"].ToString(),
+                NavTopFont = reader["NavTopFont"].ToString(),
+                NavSide = reader["NavSide"].ToString(),
+                NavSideFont = reader["NavSideFont"].ToString(),
+                NavSideButton = reader["NavSideButton"].ToString(),
+                Footer = reader["Footer"].ToString(),
+                FooterFont = reader["FooterFont"].ToString(),
             };
         }
     }

@@ -19,44 +19,34 @@ namespace Model_BLL.Services
             _repo = FavoritesRepo;
         }
 
-        public IEnumerable<Favorite> GetAllGames(int Id)
+        public IEnumerable<Favorite> GetAllGames(int QuesterId)
         {
-            return _repo.GetAllGames(Id).Select(x => x.toModel());
+            return _repo.GetAllGames(QuesterId).Select(x => x.toModel());
         }
 
-        public IEnumerable<Favorite> GetAllGenres(int Id)
+        public IEnumerable<Favorite> GetAllGenres(int QuesterId)
         {
-            return _repo.GetAllGenres(Id).Select(x => x.toModel());
+            return _repo.GetAllGenres(QuesterId).Select(x => x.toModel());
         }
 
-        public Favorite GetGameById(int QuesterId, int GameId)
+        public void addFavoriteGame(int QuesterId, int GameId)
         {
-            return _repo.GetGameById(QuesterId, GameId).toModel();
+            _repo.InsertGame(QuesterId, GameId);
         }
 
-        public Favorite GetGenreById(int QuesterId, int GenreId)
+        public void addFavoriteGenre(int QuesterId, int GenreId)
         {
-            return _repo.GetGenreById(QuesterId, GenreId).toModel();
+            _repo.InsertGenre(QuesterId, GenreId);
         }
 
-        public void addFavoriteGame(Quester q, Game g)
+        public void DeleteGame(int FavoriteId)
         {
-            _repo.InsertGame(q.toDal(), g.toDal());
+            _repo.DeleteGame(FavoriteId);
         }
 
-        public void addFavoriteGenre(Quester q, Genre g)
+        public void DeleteGenre(int FavoriteId)
         {
-            _repo.InsertGenre(q.toDal(), g.toDal());
-        }
-
-        public void DeleteGame(int QuesterId, int GameId)
-        {
-            _repo.DeleteGame(QuesterId, GameId);
-        }
-
-        public void DeleteGenre(int QuesterId, int GenreId)
-        {
-            _repo.DeleteGenre(QuesterId, GenreId);
+            _repo.DeleteGenre(FavoriteId);
         }
     }
 }

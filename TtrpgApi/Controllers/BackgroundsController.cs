@@ -12,25 +12,23 @@ namespace TtrpgApi.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class FavoriteGenresController : ControllerBase
+    public class BackgroundsController : ControllerBase
     {
 
-        private IFavoritesService _favoritesService;
-        public FavoriteGenresController(IFavoritesService favoritesService)
+        private IBackgroundsService _backgroundsService;
+        public BackgroundsController(IBackgroundsService backgroundsService)
         {
-            _favoritesService = favoritesService;
+            _backgroundsService = backgroundsService;
         }
-
 
         [Authorize("Quester")]
         [HttpPost("Id")]
-        public IActionResult addFavoriteGenre(int Id)
+        public IActionResult addBackground([FromBody] Background b)
         {
             try
             {
-                int questerId = int.Parse(User.FindFirstValue(ClaimTypes.Name));
-                _favoritesService.addFavoriteGenre(questerId, Id);
-                return Ok("Ajouté aux préférences");
+                _backgroundsService.addBackground(b);
+                return Ok("Ajouté aux backgrounds");
             }
             catch (Exception e)
             {
@@ -45,7 +43,7 @@ namespace TtrpgApi.Controllers
             try
             {
                 int questerId = int.Parse(User.FindFirstValue(ClaimTypes.Name));
-                return Ok(_favoritesService.GetAllGenres(questerId));
+                return Ok(_favoritesService.GetAllGames(questerId));
             }
             catch (Exception e)
             {
@@ -55,11 +53,11 @@ namespace TtrpgApi.Controllers
 
         [Authorize("Quester")]
         [HttpDelete("{FavoriteId}")]
-        public IActionResult deleteGenre(int FavoriteId)
+        public IActionResult deleteGame(int FavoriteId)
         {
             try
             {
-                _favoritesService.DeleteGenre(FavoriteId);
+                _favoritesService.DeleteGame(FavoriteId);
                 return Ok();
             }
             catch (Exception e)

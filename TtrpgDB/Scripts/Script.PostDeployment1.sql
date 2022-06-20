@@ -1,4 +1,4 @@
-﻿INSERT INTO Backgrounds VALUES ('Default', '.\Backgrounds\Default Background.jpeg', '8c4930', 'ffffff', '6ab9c7', '000000', 'ffffff', '4c4c66', 'ffffff')
+﻿INSERT INTO Backgrounds VALUES ('Default', 'https://i.postimg.cc/bvgRF05J/Default-Background.jpg', '8c4930', 'ffffff', '6ab9c7', '000000', 'ffffff', '4c4c66', 'ffffff')
 
 INSERT INTO Questers (Username, Email, [Password], BirthDate, isAdmin, Bio) VALUES ('Pensiever', 'ruben.ketsman@hotmail.be', 'Test1234=', '1998-01-31', 1, 'Owner of "Pensiever''s Tavern"')
 INSERT INTO Questers (Username, Email, [Password], BirthDate, Bio) VALUES ('Test1', 'test@test.com', 'Test1234=', '1950-12-01', 'Pensiever''s Test Subject')

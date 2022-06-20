@@ -64,7 +64,7 @@ namespace TtrpgApi.Controllers
         }
 
         [Authorize("Admin")]
-        [HttpDelete]
+        [HttpDelete("{Id}")]
         public IActionResult Delete(int Id)
         {
             try

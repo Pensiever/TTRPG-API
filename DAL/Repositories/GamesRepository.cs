@@ -35,7 +35,7 @@ namespace DAL.Repositories
         {
             Command cmd = new Command("SELECT * FROM [Games] WHERE Id = @Id");
             cmd.AddParameter("Id", Id);
-            return _connection.ExecuteReader(cmd, Converter.ConvertGame).FirstOrDefault();
+            return _connection.ExecuteReader(cmd, Converter.ConvertGame).First();
         }
 
         public void Insert(Game g)

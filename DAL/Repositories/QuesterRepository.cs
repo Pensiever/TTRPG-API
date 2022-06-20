@@ -56,7 +56,7 @@ namespace DAL.Repositories
         {
             Command cmd = new Command("SELECT * FROM [Questers] WHERE Username = @username");
             cmd.AddParameter("username", username);
-            return _connection.ExecuteReader(cmd, Converter.ConvertQuester).FirstOrDefault();
+            return _connection.ExecuteReader(cmd, Converter.ConvertQuester).First();
         }
 
         public bool Delete(int Id)
@@ -76,7 +76,7 @@ namespace DAL.Repositories
         {
             Command cmd = new Command("SELECT * FROM [Questers] WHERE Id = @Id");
             cmd.AddParameter("Id", Id);
-            return _connection.ExecuteReader(cmd, Converter.ConvertQuester).FirstOrDefault();
+            return _connection.ExecuteReader(cmd, Converter.ConvertQuester).First();
         }
 
         public void Insert(Quester q)

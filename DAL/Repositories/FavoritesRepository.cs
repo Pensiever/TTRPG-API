@@ -18,68 +18,50 @@ namespace DAL.Repositories
         {
         }
 
-        public bool DeleteGame(int QuesterId, int GameId)
+        public bool DeleteGame(int FavoriteId)
         {
-            Command cmd = new Command("DELETE FROM [FavoriteGames] WHERE QuesterId = @QuesterId AND GameId = @GameId");
-            cmd.AddParameter("QuesterId", QuesterId);
-            cmd.AddParameter("GameId", GameId);
+            Command cmd = new Command("DELETE FROM [FavoriteGames] WHERE FavoriteId = @Id");
+            cmd.AddParameter("Id", FavoriteId);
             return _connection.ExecuteNonQuery(cmd) == 1;
         }
 
-        public bool DeleteGenre(int QuesterId, int GenreId)
+        public bool DeleteGenre(int FavoriteId)
         {
-            Command cmd = new Command("DELETE FROM [FavoriteGenres] WHERE QuesterId = @QuesterId AND GenreId = @GenreId");
-            cmd.AddParameter("QuesterId", QuesterId);
-            cmd.AddParameter("GenreId", GenreId);
+            Command cmd = new Command("DELETE FROM [FavoriteGenres] WHERE FavoriteId = @Id");
+            cmd.AddParameter("Id", FavoriteId);
             return _connection.ExecuteNonQuery(cmd) == 1;
         }
 
-        public IEnumerable<Favorite> GetAllGames(int Id)
+        public IEnumerable<Favorite> GetAllGames(int QuesterId)
         {
             Command cmd = new Command("SELECT * FROM [FavoriteGames] WHERE QuesterId = @Id");
-            cmd.AddParameter("Id", Id);
-            return _connection.ExecuteReader<Favorite>(cmd, Converter.ConvertFavorite);
+            cmd.AddParameter("Id", QuesterId);
+            return _connection.ExecuteReader<Favorite>(cmd, Converter.ConvertFavoriteGame);
         }
 
-        public IEnumerable<Favorite> GetAllGenres(int Id)
+        public IEnumerable<Favorite> GetAllGenres(int QuesterId)
         {
             Command cmd = new Command("SELECT * FROM [FavoriteGenres] WHERE QuesterId = @Id");
-            cmd.AddParameter("Id", Id);
-            return _connection.ExecuteReader<Favorite>(cmd, Converter.ConvertFavorite);
+            cmd.AddParameter("Id", QuesterId);
+            return _connection.ExecuteReader<Favorite>(cmd, Converter.ConvertFavoriteGenre);
         }
 
-        public Favorite GetGameById(int QuesterId, int GameId)
-        {
-            Command cmd = new Command("SELECT * FROM [FavoriteGames] WHERE QuesterId = @QuesterId AND GameId = @GameId");
-            cmd.AddParameter("QuesterId", QuesterId);
-            cmd.AddParameter("GameId", GameId);
-            return _connection.ExecuteReader(cmd, Converter.ConvertFavorite).FirstOrDefault();
-        }
-
-        public Favorite GetGenreById(int QuesterId, int GenreId)
-        {
-            Command cmd = new Command("SELECT * FROM [FavoriteGenres] WHERE QuesterId = @QuesterId AND GenreId = @GenreId");
-            cmd.AddParameter("QuesterId", QuesterId);
-            cmd.AddParameter("GenreId", GenreId);
-            return _connection.ExecuteReader(cmd, Converter.ConvertFavorite).FirstOrDefault();
-        }
-
-        public void InsertGame(Quester q, Game g)
+        public void InsertGame(int QuesterId, int GameId)
         {
             string query = "INSERT INTO [FavoriteGames] (QuesterId, GameId) VALUES(@questerId, @gameId)";
             Command cmd = new Command(query);
-            cmd.AddParameter("questerId", q.Id);
-            cmd.AddParameter("gameId", g.Id);
+            cmd.AddParameter("questerId", QuesterId);
+            cmd.AddParameter("gameId", GameId);
 
             _connection.ExecuteNonQuery(cmd);
         }
 
-        public void InsertGenre(Quester q, Genre g)
+        public void InsertGenre(int QuesterId, int GenreId)
         {
             string query = "INSERT INTO [FavoriteGenres] (QuesterId, GenreId) VALUES(@questerId, @genreId)";
             Command cmd = new Command(query);
-            cmd.AddParameter("questerId", q.Id);
-            cmd.AddParameter("genreId", g.Id);
+            cmd.AddParameter("questerId", QuesterId);
+            cmd.AddParameter("genreId", GenreId);
 
             _connection.ExecuteNonQuery(cmd);
         }

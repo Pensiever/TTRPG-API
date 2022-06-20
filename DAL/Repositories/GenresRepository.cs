@@ -35,7 +35,7 @@ namespace DAL.Repositories
         {
             Command cmd = new Command("SELECT * FROM [Genres] WHERE Id = @Id");
             cmd.AddParameter("Id", Id);
-            return _connection.ExecuteReader(cmd, Converter.ConvertGenre).FirstOrDefault();
+            return _connection.ExecuteReader(cmd, Converter.ConvertGenre).First();
         }
 
         public void Insert(Genre g)

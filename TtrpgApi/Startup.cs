@@ -8,10 +8,10 @@ using Model_BLL.Services.Interfaces;
 using Model_BLL.Services;
 using Model_BLL.Models;
 using TtrpgApi.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using TtrpgApi.Services.Interfaces;
+using TtrpgApi.Domain;
+using TtrpgApi.Hubs;
 
 namespace TtrpgApi
 {
@@ -27,18 +27,31 @@ namespace TtrpgApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSignalR();
 
-            services.AddCors();
+            services.AddCors(o => o.AddPolicy("chatPolicy", builder => builder
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                ));
 
             // Add services to the container.
             #region Repositories
             services.AddScoped<IQuesterRepository<dal.Quester>, QuesterRepository>();
+            services.AddScoped<IFavoritesRepository<dal.Favorite>, FavoritesRepository>();
+            services.AddScoped<IGamesRepository<dal.Game>, GamesRepository>();
+            services.AddScoped<IGenresRepository<dal.Genre>, GenresRepository>();
             #endregion
 
             #region Services
             services.AddScoped<IQuesterService, QuesterService>();
+            services.AddScoped<IFavoritesService, FavoritesService>();
+            services.AddScoped<IGamesService, GamesService>();
+            services.AddScoped<IGenresService, GenresService>();
+            services.AddScoped<ChatHub>();
+            services.AddSingleton<DataContext>();
             #endregion
-
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             #region Swagger
@@ -104,13 +117,14 @@ namespace TtrpgApi
             app.UseAuthorization();
             app.UseAuthentication();
 
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors("chatPolicy");
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chat");
             });
-
+           
             app.UseSwagger();
             
             app.UseSwaggerUI(c =>

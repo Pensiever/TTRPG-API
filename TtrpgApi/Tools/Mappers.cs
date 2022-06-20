@@ -33,5 +33,25 @@ namespace TtrpgApi.Tools
                 OfflinePlay = connectedQuester.OfflinePlay,
             };
         }
+
+        public static Game toModel(this NewGameInfo newGame)
+        {
+            return new Game
+            {
+                Name = newGame.Name,
+                Description = newGame.Description,
+                Image = newGame.Image,
+            };
+        }
+
+        public static Genre toModel(this NewGenreInfo newGenre)
+        {
+            return new Genre
+            {
+                Name = newGenre.Name,
+                Description = newGenre.Description,
+                Image = newGenre.Image,
+            };
+        }
     }
 }
