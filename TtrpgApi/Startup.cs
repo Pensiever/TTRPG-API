@@ -42,6 +42,7 @@ namespace TtrpgApi
             services.AddScoped<IFavoritesRepository<dal.Favorite>, FavoritesRepository>();
             services.AddScoped<IGamesRepository<dal.Game>, GamesRepository>();
             services.AddScoped<IGenresRepository<dal.Genre>, GenresRepository>();
+            services.AddScoped<IBackgroundsRepository<dal.Background>, BackgroundsRepository>();
             #endregion
 
             #region Services
@@ -49,6 +50,7 @@ namespace TtrpgApi
             services.AddScoped<IFavoritesService, FavoritesService>();
             services.AddScoped<IGamesService, GamesService>();
             services.AddScoped<IGenresService, GenresService>();
+            services.AddScoped<IBackgroundsService, BackgroundsService>();
             services.AddScoped<ChatHub>();
             services.AddSingleton<DataContext>();
             #endregion
@@ -117,6 +119,15 @@ namespace TtrpgApi
             app.UseAuthorization();
             app.UseAuthentication();
 
+            app.UseHttpsRedirection();
+            
+            //app.UseCors(builder =>
+            //{
+            //    builder.AllowAnyOrigin()
+            //        .AllowAnyHeader()
+            //        .AllowAnyMethod();
+            //        //.AllowCredentials();
+            //});
             app.UseCors("chatPolicy");
 
             app.UseEndpoints(endpoints =>

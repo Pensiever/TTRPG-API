@@ -21,13 +21,13 @@ namespace TtrpgApi.Controllers
             _backgroundsService = backgroundsService;
         }
 
-        [Authorize("Quester")]
-        [HttpPost("Id")]
-        public IActionResult addBackground([FromBody] Background b)
+        [Authorize("Admin")]
+        [HttpPost("addBackground")]
+        public IActionResult addBackground([FromBody] NewBackground b)
         {
             try
             {
-                _backgroundsService.addBackground(b);
+                _backgroundsService.addBackground(b.toModel());
                 return Ok("Ajouté aux backgrounds");
             }
             catch (Exception e)
@@ -42,8 +42,22 @@ namespace TtrpgApi.Controllers
         {
             try
             {
-                int questerId = int.Parse(User.FindFirstValue(ClaimTypes.Name));
-                return Ok(_favoritesService.GetAllGames(questerId));
+                return Ok(_backgroundsService.GetAllBackgrounds());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Authorize("Admin")]
+        [HttpDelete("{Id}")]
+        public IActionResult Delete(int Id)
+        {
+            try
+            {
+                _backgroundsService.DeleteBackground(Id);
+                return Ok();
             }
             catch (Exception e)
             {
@@ -52,12 +66,26 @@ namespace TtrpgApi.Controllers
         }
 
         [Authorize("Quester")]
-        [HttpDelete("{FavoriteId}")]
-        public IActionResult deleteGame(int FavoriteId)
+        [HttpGet("{Id}")]
+        public IActionResult Get(int Id)
         {
             try
             {
-                _favoritesService.DeleteGame(FavoriteId);
+                return Ok(_backgroundsService.GetById(Id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Authorize("Admin")]
+        [HttpPut]
+        public IActionResult Update([FromBody] Background b)
+        {
+            try
+            {
+                _backgroundsService.UpdateBackground(b);
                 return Ok();
             }
             catch (Exception e)

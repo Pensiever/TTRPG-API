@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Model_BLL.Services
 {
-    public class BackgroundsService
+    public class BackgroundsService : IBackgroundsService
     {
         IBackgroundsRepository<dal.Background> _repo;
         public BackgroundsService(IBackgroundsRepository<dal.Background> BackgroundsRepo)

@@ -53,5 +53,21 @@ namespace TtrpgApi.Tools
                 Image = newGenre.Image,
             };
         }
+
+        public static Background toModel(this NewBackground newBackground)
+        {
+            return new Background
+            {
+                Name = newBackground.Name,
+                Image = newBackground.Image,
+                NavTop = newBackground.NavTop,
+                NavTopFont = newBackground.NavTopFont,
+                NavSide = newBackground.NavSide,
+                NavSideFont = newBackground.NavSideFont,
+                NavSideButton = newBackground.NavSideButton,
+                Footer = newBackground.Footer,
+                FooterFont = newBackground.FooterFont
+            };
+        }
     }
 }

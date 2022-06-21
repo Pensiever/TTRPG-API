@@ -35,7 +35,7 @@ namespace TtrpgApi.Controllers
             }
         }
 
-        [Authorize("Admin")]
+        [Authorize("Quester")]
         [HttpGet]
         public IActionResult Get()
         {

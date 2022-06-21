@@ -34,9 +34,9 @@ namespace TtrpgApi.Controllers
         }
 
         [HttpGet]
-        public List<string> GetAllRooms()
+        public List<Room> GetAllRooms(string Username)
         {
-            return _ch.GetAllRooms();
+            return _ch.GetAllRooms(Username);
         }
     }
 }

@@ -70,9 +70,9 @@ namespace TtrpgApi.Hubs
                 });
         }
 
-        public List<string> GetAllRooms()
+        public List<Room> GetAllRooms(string Username)
         {
-            return _dc.Rooms.Select(r => r.Name).ToList();
+            return _dc.Users.Where(u => u.Username == Username).SelectMany(u => u.Rooms).ToList();
         }
 
         public async Task AddToRoom(string roomName)

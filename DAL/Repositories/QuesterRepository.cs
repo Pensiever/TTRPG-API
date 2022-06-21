@@ -43,7 +43,13 @@ namespace DAL.Repositories
 
 
                 if ((int)_connection.ExecuteScalar(checkActive) > 0) return true;
-                else return false;
+                else
+                {
+                    Command checkBanned = new Command("SELECT Id FROM [Questers] WHERE Id = " + Id + " AND IsBanned = 0");
+                    if ((int)_connection.ExecuteScalar(checkBanned) == 0) return true; 
+                    else return false;
+                }
+                
             }
             else
             {
@@ -93,16 +99,24 @@ namespace DAL.Repositories
 
         public void Update(Quester q)
         {
-            string query = "UPDATE [Questers] SET Username = @username, Email = @email, Password = @password, BirthDate = @birthDate" +
+            string query = "UPDATE [Questers] SET Username = @username, Email = @email, BirthDate = @birthDate, IsActive = @isActive, IsAdmin = @isAdmin, IsBanned = @isBanned, Strikes = @strikes, BackgroundId = @backgroundId, Bio = @bio, OnlinePlay = @onlinePlay, OfflinePlay = @offlinePlay, PostalCode = @postalCode" +
                 " WHERE Id = @Id";
             Command cmd = new Command(query);
             cmd.AddParameter("username", q.Username);
             cmd.AddParameter("email", q.Email);
-            cmd.AddParameter("password", q.Password);
             cmd.AddParameter("birthDate", q.BirthDate);
+            cmd.AddParameter("isActive", q.IsActive);
+            cmd.AddParameter("isAdmin", q.IsAdmin);
+            cmd.AddParameter("isBanned", q.IsBanned);
+            cmd.AddParameter("strikes", q.Strikes);
+            cmd.AddParameter("backgroundId", q.BackgroundId);
+            cmd.AddParameter("bio", q.Bio);
+            cmd.AddParameter("onlinePlay", q.OnlinePlay);
+            cmd.AddParameter("offlinePlay", q.OfflinePlay);
+            cmd.AddParameter("postalCode", q.PostalCode);
             cmd.AddParameter("Id", q.Id);
 
-            _connection.ExecuteNonQuery(cmd);
+        _connection.ExecuteNonQuery(cmd);
         }
 
         public void SetAdmin(int Id)
