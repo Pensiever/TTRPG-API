@@ -29,7 +29,7 @@ namespace TtrpgApi
             services.AddControllers();
             services.AddSignalR();
 
-            services.AddCors(o => o.AddPolicy("chatPolicy", builder => builder
+            services.AddCors(o => o.AddPolicy(name: "chatPolicy", builder => builder
                 .WithOrigins("http://localhost:4200")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
