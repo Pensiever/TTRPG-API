@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Angular\MovieCatalogueApi\MovieCatalogueApi\ADOToolBox\ADOToolBox.csproj" />
+    <ProjectReference Include="..\AdoToolbox\AdoToolbox.csproj" />
   </ItemGroup>
 
 </Project>
